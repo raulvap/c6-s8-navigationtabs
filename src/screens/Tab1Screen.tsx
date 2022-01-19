@@ -1,13 +1,18 @@
-import React, {useEffect} from 'react';
+import React, {useContext, useEffect} from 'react';
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import {Text, View} from 'react-native';
 import {styles, colores} from '../theme/appTheme';
 import {useSafeAreaInsets} from 'react-native-safe-area-context';
+import TouchableIcon from '../components/TouchableIcon';
+import {AuthContext} from '../context/AuthContext';
 
 export const Tab1Screen = () => {
   // Hook para obtener el top del safearea
   const {top} = useSafeAreaInsets();
+  const {
+    authState: {favoriteIcon},
+  } = useContext(AuthContext);
 
   //   // Clase 121: personalizando el Tab
   // useEffect(() => {
@@ -21,15 +26,17 @@ export const Tab1Screen = () => {
         marginTop: top + 10,
       }}>
       <Text style={styles.title}> Iconos </Text>
+      {favoriteIcon && <Text>Fav Icon: {favoriteIcon}</Text>}
 
       <Text>
-        <Icon name="airplane" size={80} color={colores.primary} />
-        <Icon name="attach-outline" size={80} color={colores.primary} />
-        <Icon name="bonfire-outline" size={80} color={colores.primary} />
-        <Icon name="calculator-outline" size={80} color={colores.primary} />
-        <Icon name="chatbubble-ellipses" size={80} color={colores.primary} />
-        <Icon name="images-outline" size={80} color={colores.primary} />
-        <Icon name="leaf-outline" size={80} color={colores.primary} />
+        <TouchableIcon iconName="airplane" />
+
+        <TouchableIcon iconName="attach-outline" />
+        <TouchableIcon iconName="bonfire-outline" />
+        <TouchableIcon iconName="calculator-outline" />
+        <TouchableIcon iconName="chatbubble-ellipses" />
+        <TouchableIcon iconName="images-outline" />
+        <TouchableIcon iconName="leaf-outline" />
       </Text>
     </View>
   );
